@@ -1,8 +1,12 @@
+import java.util.HashMap;
+import java.util.Scanner;
 public class TacoMain {
-    HashMap<String, Customer>;
+    HashMap<String, Customer> mapOne;
     int tips; 
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your name:");
         // run intro text
         // prompt user to press start
         // once begins, enter c-style loop of 10 times
