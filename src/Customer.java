@@ -4,7 +4,9 @@ public class Customer {
     int pickiness; 
 
     public Customer(){
-        
+        public int getSatisfaction(){
+            
+        }
     }
 
 
