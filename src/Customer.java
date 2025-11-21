@@ -3,11 +3,18 @@ public class Customer {
     int willingnessToTip;
     int pickiness; 
 
-    public Customer(){
-        public int getSatisfaction(){
-            
-        }
+    public Customer(int willingnessToTip, int pickiness){
+        this.willingnessToTip = willingnessToTip;
+        this.pickiness = pickiness;
     }
+    public int getSatisfaction(){
+        return satisfaction;
+    }
+    public void setSatisfaction(int satisfaction){
+        this.satisfaction = satisfaction;
+    }
+    
+
 
 
 }
