@@ -1,6 +1,5 @@
 public class DialogueChoice {
-    String choiceText;
-    
+
     private String choiceText;
     private DialogueNode nextNode;
 
