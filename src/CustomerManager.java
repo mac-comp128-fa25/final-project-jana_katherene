@@ -11,8 +11,8 @@ public class CustomerManager{
     Random random = new Random(); 
 
     public void constructCustomerMap(){
-        allCharacters.put("sample1", new Customer(99, 50));
-        allCharacters.put("sample2", new Customer(0, 99));
+        allCharacters.put("sample1", new Customer(99, 50,"Clare"));
+        allCharacters.put("sample2", new Customer(0, 99,"Sally"));
     }
     
     public Map<String, Customer> getAllCustomers(){
