@@ -22,5 +22,10 @@ public class DialogueNode {
     public void addChoice(DialogueChoice choice) {
         this.choices.add(choice);
     }
+
+    public void tacoTriggered(){
+        TacoBuilder tacobuilder = new TacoBuilder();
+        tacobuilder.beginTacoBuild();
+    }
 }
 
