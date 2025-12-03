@@ -2,10 +2,12 @@ import java.util.HashMap;
 import java.util.Queue;
 import java.util.Scanner;
 public class TacoMain {
+
     HashMap<String, Customer> mapOne;
     static Customer sally;
     int tips; 
     String username;
+    static TacoBuilder tacoBuilder;
 
     public static void main(String[] args) {
         //sample text interaction
@@ -24,6 +26,8 @@ public class TacoMain {
             // calculate amount of money earned from interaction 
             // append to tips instance variable 
         // 
+        TacoBuilder tacoBuilder = new TacoBuilder();
+        
 
         System.out.println("Hello! My name is Your Boss. Welcome to your first day at the Taco Shop. What's your name?");
         Scanner scanner = new Scanner(System.in);
@@ -31,6 +35,7 @@ public class TacoMain {
         
         System.out.println("That's an okay name. Welcome " + username + "! ");
         System.out.println("Today we expect 10 customers. You're new here, so try to be courteous to our town's people. They can be a handful.... Good luck!");
+        tacoBuilder.buildTaco();
         
     }
 }
