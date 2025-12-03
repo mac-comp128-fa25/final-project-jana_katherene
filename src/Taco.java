@@ -1,12 +1,12 @@
 import java.util.Stack;
 
 public class Taco{
-    private Stack<Ingredient> tacoBuild = new Stack<>();
+    private Stack<String> tacoBuild = new Stack<>();
 
     public Taco(){}
 
     public void addIngredient(String name) {
-        tacoBuild.push(new Ingredient(name));
+        tacoBuild.push(name);
     }
 
     public void undoLastStep() {
@@ -15,7 +15,7 @@ public class Taco{
         }
     }
 
-    public Stack<Ingredient> getTacoStack(){
+    public Stack<String> getTacoStack(){
         return tacoBuild;
     }
     
