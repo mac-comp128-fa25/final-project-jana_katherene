@@ -15,7 +15,7 @@ public class Customer {
     public void setSatisfaction(int satisfaction){
         this.satisfaction = satisfaction;
     }
-
+    
     public String getName(){
         return name;
     }

@@ -6,7 +6,8 @@ public class DialogueNode {
     private int nodeID;
     private String speakerText;  
     private List<DialogueChoice> choices; 
-    private boolean triggersTacoBuilding; 
+    private boolean triggersTacoBuilding;
+     
     
     public DialogueNode(String speakerText, int nodeID) {
         this.nodeID = nodeID;

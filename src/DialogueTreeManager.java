@@ -34,7 +34,7 @@ public class DialogueTreeManager{
 
         //loop until no nodes left
         while(!current.equals(endNode)){
-            //prin the current node
+            // prin the current node
             System.out.println(current.getText());
 
             //check if current node is endNode and stop if yes
@@ -43,9 +43,12 @@ public class DialogueTreeManager{
                 break;
             }
 
-            //print choices of current node
-            for(int i = 0; i<current.getChoices().size(); i++){
+            // //print choices of current node
+            for(int i = 0; i < current.getChoices().size(); i++){
+                int count = 1;
+                System.out.println((count));
                 System.out.println(current.getChoices().get(i).getChoiceText());
+                count++;
             }
 
             //move to next node based on choice
