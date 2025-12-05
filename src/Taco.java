@@ -33,7 +33,7 @@ public class Taco{
         return tacoBuild.size();
     }
 
-    public String undoLastStep() {
+    public String undoIngredient() {
         if (!tacoBuild.isEmpty()) {
             return tacoBuild.pop();
         }

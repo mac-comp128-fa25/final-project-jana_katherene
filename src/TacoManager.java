@@ -10,7 +10,6 @@ public class TacoManager{
 
     public TacoManager(){};
 
-
     public void buildTaco(){
         Taco userTaco = new Taco();
         System.out.println("To add an ingredient to your taco, type it in. Remember, you can add spice, meat, veg, or sauce. Type start to start, and stop whenever you are done adding ingredients");
@@ -19,7 +18,7 @@ public class TacoManager{
 
         while (!word.equalsIgnoreCase("stop")){
             if (word.equalsIgnoreCase("undo")) {
-                String removed = userTaco.undoLastStep();
+                String removed = userTaco.undoIngredient();
                 if (removed != null){
                     //removeFromCount(removed);
                 } else {
