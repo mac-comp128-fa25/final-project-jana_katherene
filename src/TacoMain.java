@@ -6,14 +6,17 @@ public class TacoMain {
     int tips; 
 
     public static void main(String[] args) {
+
+        DialogueTreeManager testRun = new DialogueTreeManager();
+        testRun.runSampleDialogue();
         //sample text interaction
-        sally = new Customer(0, 0, "sally");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your name:");
+        // sally = new Customer(0, 0, "sally");
+        // Scanner scanner = new Scanner(System.in);
+        // System.out.println("Enter your name:");
 
-        sally.name = scanner.nextLine();
+        // sally.name = scanner.nextLine();
 
-        System.out.println(sally.getName());
+        // System.out.println(sally.getName());
         // run intro text
         // prompt user to press start
         // once begins, enter c-style loop of 10 times
