@@ -31,7 +31,6 @@ public class TacoMain {
         // 
         TacoManager tacoManager = new TacoManager();
         
-
         System.out.println("Hello! My name is Your Boss. Welcome to your first day at the Taco Shop. What's your name?");
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
