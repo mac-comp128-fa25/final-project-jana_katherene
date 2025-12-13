@@ -3,14 +3,19 @@ import java.util.List;
 //character script/speech
 
 public class DialogueNode {
-    private int nodeID;
     private String speakerText;  
     private List<DialogueChoice> choices; 
-    private boolean triggersTacoBuilding;
+    public boolean tacoTrigger;
      
     
-    public DialogueNode(String speakerText, int nodeID) {
-        this.nodeID = nodeID;
+    public DialogueNode(String speakerText, boolean tacoTrigger) {
+        this.tacoTrigger = tacoTrigger;
+        this.speakerText = speakerText;
+        this.choices = new ArrayList<>();
+    }
+
+    public DialogueNode(String speakerText) {
+        this.tacoTrigger = false;
         this.speakerText = speakerText;
         this.choices = new ArrayList<>();
     }
@@ -27,9 +32,5 @@ public class DialogueNode {
         this.choices.add(choice);
     }
 
-    // public void tacoTriggered(){
-    //     TacoManager tacobuilder = new TacoBuilder();
-    //     // tacobuilder.beginTacoBuild();
-    // }
 }
 

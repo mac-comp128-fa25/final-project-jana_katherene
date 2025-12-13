@@ -2,10 +2,12 @@ public class DialogueChoice {
 
     private String choiceText;
     private DialogueNode nextNode;
+    private int tipImpact;
 
-    public DialogueChoice(String choiceText, DialogueNode nextNode) {
+    public DialogueChoice(String choiceText, DialogueNode nextNode, int tipImpact) {
         this.choiceText = choiceText;
         this.nextNode = nextNode;
+        this.tipImpact = tipImpact;
     }
 
     public String getChoiceText() {
@@ -14,6 +16,10 @@ public class DialogueChoice {
 
     public DialogueNode getNextNode() {
         return nextNode;
+    }
+    
+    public int getTipImpact() {
+        return tipImpact;
     }
 }
 
