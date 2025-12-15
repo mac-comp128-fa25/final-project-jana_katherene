@@ -5,18 +5,17 @@ import java.util.List;
 public class DialogueNode {
     private String speakerText;  
     private List<DialogueChoice> choices; 
-    public boolean tacoTrigger;
+    public boolean end;
      
-    
-    public DialogueNode(String speakerText, boolean tacoTrigger) {
-        this.tacoTrigger = tacoTrigger;
+    public DialogueNode(String speakerText, boolean end) {
         this.speakerText = speakerText;
+        this.end = end;
         this.choices = new ArrayList<>();
     }
 
     public DialogueNode(String speakerText) {
-        this.tacoTrigger = false;
         this.speakerText = speakerText;
+        this.end = false;
         this.choices = new ArrayList<>();
     }
 

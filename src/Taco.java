@@ -19,20 +19,32 @@ public class Taco{
     }
 
     private void incrementCount(String ingredient) {
-    if (ingredient.equalsIgnoreCase("meat")) {
-        meatCount++;
-    } else if (ingredient.equalsIgnoreCase("vegetable")) {
-        vegCount++;
-    } else if (ingredient.equalsIgnoreCase("spice")) {
-        spiceCount++;
-    } else if (ingredient.equalsIgnoreCase("sauce")) {
-        sauceCount++;
+        if (ingredient.equalsIgnoreCase("meat")) {
+            meatCount++;
+        } else if (ingredient.equalsIgnoreCase("vegetable")) {
+            vegCount++;
+        } else if (ingredient.equalsIgnoreCase("spice")) {
+            spiceCount++;
+        } else if (ingredient.equalsIgnoreCase("sauce")) {
+            sauceCount++;
+        }
     }
-}
+
     public int size() {
         return tacoBuild.size();
     }
 
+    public String tacoName(){
+        if (this.meatCount>=4){
+            return "Meat Lover";
+        } else if (this.vegCount>=4){
+            return "Vegetarian";
+        } else if (this.spiceCount>=4){
+            return "Spicy";
+        } else {
+            return null;
+        }
+    }
     public String undoIngredient() {
         if (!tacoBuild.isEmpty()) {
             return tacoBuild.pop();
