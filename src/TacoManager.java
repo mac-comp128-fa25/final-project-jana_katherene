@@ -1,13 +1,16 @@
 import java.util.Scanner;
-import java.util.Stack;
 
 public class TacoManager{
-
     public TacoManager(){};
 
+    /**
+     * Interactively builds a taco based on user input. Users may add ingredients, undo the last addition, or stop when finished.
+     *
+     * @return the completed user-built Taco
+     */
     public Taco buildTaco(){
         Taco userTaco = new Taco();
-        System.out.println("To add an ingredient to your taco, type it in. Remember, you can add spice, meat, veg, or sauce. Type start to start, and stop whenever you are done adding ingredients");
+        System.out.println("To add an ingredient to your taco, type it in. \n Remember, you can add 10 ingredients: spice, meat, veg, or sauce. Type stop whenever you are ready to serve. ");
         Scanner scanner = new Scanner(System.in);
         String word = scanner.nextLine();
 
@@ -22,11 +25,6 @@ public class TacoManager{
             }
             word = scanner.nextLine();
         }
-        
-        System.out.println("Alright, your taco is done. ");
-        System.out.println(userTaco.getTacoStack().toString());
         return userTaco;
-        
-        
     }
 }

@@ -3,52 +3,70 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class DialogueTreeManager{
-
     private DialogueNode startNode;
-    private DialogueNode endNode;
     private Random rand = new Random();
     private TacoOrderBank desiredTacoOrderBank = new TacoOrderBank();
-
+    
+    /**
+     * Creates a DialogueTreeManager responsible for generating and running
+     * customer dialogue trees during gameplay.
+     */
     public DialogueTreeManager(){
     }
 
-    public DialogueNode getRandomCustomerTree(String username, Taco desiredTaco) {
+    /**
+     * Randomly selects and generates one of two possible dialogue trees 
+     * for a customer interaction.
+     *
+     * @param name the customer's name
+     * @param username the player's username
+     * @param desiredTaco the taco the customer wants to order
+     * @return the root DialogueNode of the generated dialogue tree
+     */
+    public DialogueNode getRandomCustomerTree(String name, String username, Taco desiredTaco) {
             int pick = rand.nextInt(2); 
 
             if (pick == 0) {
-                return cherylTree(username, desiredTaco);
+                return ATree(name, username, desiredTaco);
             } else {
-                return joseTree(username, desiredTaco);
+                return BTree(name, username, desiredTaco);
             }
         }
 
+
+    /**
+     * Runs an interactive dialogue starting from the given node, allowing the player
+     * to choose dialogue options that affect tip outcomes and conversation flow.
+     *
+     * @param startNode the starting node of the dialogue tree
+     * @param desiredTaco the taco the customer wants
+     * @param tacoManager the manager responsible for taco creation 
+     * @return the total dialogue-based tip amount earned
+     */
     public int runDialogue(DialogueNode startNode, Taco desiredTaco, TacoManager tacoManager){
+        
         Scanner scanner = new Scanner(System.in);
         DialogueNode current = startNode;
         int dialogueTips = 0;
 
         while(true){
-            // print the current node
             System.out.println("\n" + current.getText());
 
-            // // taco trigger: dialogue ends, taco phase begins in MAIN
-            // if (current.tacoTrigger){
-            //     System.out.println("Customer is ready to order.");
-            //     return dialogueTips;
-            // }
-
-            // customer leaves
-            if (current.end){
+            if (current.endEarly){
                 System.out.println("Customer has left.");
                 return 0;
             }
 
             if (current.getChoices().isEmpty()){
                 System.out.println("Customer is waiting to be served.");
-                return dialogueTips;
+                if (dialogueTips == 0){
+                    return dialogueTips +1; // this way, only get 0 tips if customer walks out & and you skip taco making
+                }
+                else {
+                    return dialogueTips;
+                }
             }
 
-            // print choices
             for(int i = 0; i < current.getChoices().size(); i++){
                 System.out.println((i + 1) + ". " +
                     current.getChoices().get(i).getChoiceText());
@@ -75,11 +93,18 @@ public class DialogueTreeManager{
         }
     }
 
-
-    public DialogueNode cherylTree(String username, Taco desiredTaco){
-        // root node 
-        String name = "Cheryl";
+    /**
+     * Builds and returns Dialogue Tree A which represents one possible customer personality and interaction style.
+     * 
+     * @param name the customer's name
+     * @param username the player's username
+     * @param desiredTaco the taco the customer wants to order
+     * @return the root DialogueNode for Dialogue Tree A
+     */
+    public DialogueNode ATree(String name, String username, Taco desiredTaco){
         String orderedTaco = desiredTaco.tacoName();
+        
+        // root node 
         DialogueNode starterDialogueNode = new DialogueNode(" Customer: Hello");
         
         // first customer responses 
@@ -92,7 +117,7 @@ public class DialogueTreeManager{
         starterDialogueNode.addChoice(new DialogueChoice("Hello... What's your name?", posReplyA1, +5));
         starterDialogueNode.addChoice(new DialogueChoice("HAHAHAH... Why are you at a taco stand at 8 am?", negReplyA3, -5));
 
-        // second level customer responses for neg user choices
+        // second level customer responses 
         DialogueNode negReplyB2 = new DialogueNode("Ummmmmm. Ok. Can I get a " + orderedTaco);
         DialogueNode posReplyB1 = new DialogueNode("I would likeeee...." + orderedTaco);
         DialogueNode posReplyB2 = new DialogueNode("It's great to meet you " + username + ". Good to see a fresh face around these parts. ");
@@ -110,10 +135,10 @@ public class DialogueTreeManager{
         posReplyA1.addChoice(new DialogueChoice("My name's " + username + ".", posReplyB2, +5));
         posReplyA1.addChoice(new DialogueChoice("I loooove your hair today by the way. Super diva. ", posReplyB3, +10)); // or negReplyB4
         
-        // last level DialogueNode customer speech
+        // last level customer speech
         DialogueNode posReplyC1 = new DialogueNode("I would like " + orderedTaco );
 
-        // Third level DialogueChoices
+        // third level user choices
         posReplyB2.addChoice(new DialogueChoice("Anyways, what can I get for ya?", posReplyC1, +5));
         posReplyB2.addChoice(new DialogueChoice("Thanks for being so welcoming. What can I get for you?", posReplyC1, +5));
         posReplyB2.addChoice(new DialogueChoice("Hey, I am way out of your league. Stop flirting. What taco do you want?", posReplyC1, +5));
@@ -126,8 +151,15 @@ public class DialogueTreeManager{
         return startNode;
     }
 
-    public DialogueNode joseTree(String username, Taco desiredTaco){
-        String name = "Jose";
+     /**
+     * Builds and returns Dialogue Tree B which represents one possible customer personality and interaction style.
+     * 
+     * @param name the customer's name
+     * @param username the player's username
+     * @param desiredTaco the taco the customer wants to order
+     * @return the root DialogueNode for Dialogue Tree B
+     */
+    public DialogueNode BTree(String name, String username, Taco desiredTaco){
         String orderedTaco = desiredTaco.tacoName();
 
         // root node 
@@ -143,14 +175,14 @@ public class DialogueTreeManager{
         starterDialogueNode.addChoice(new DialogueChoice("Hello... What's your name?", posReplyA1, +5));
         starterDialogueNode.addChoice(new DialogueChoice("HAHAHAH... Why are you at a taco stand at 8 am?", posReplyA2, +5));
 
-        // second level customer responses for neg user choices
+        // second level customer responses 
         DialogueNode negReplyB1 = new DialogueNode("Man. I do not care. I'm leaving.", true);
         DialogueNode negReplyB4 = new DialogueNode("I dont like that. ");
         DialogueNode posReplyB1 = new DialogueNode("I would likeeee...." + orderedTaco);
         DialogueNode posReplyB2 = new DialogueNode("It's great to meet you " + username + ". Good to see a fresh face around these parts. ");
         DialogueNode posReplyB3 = new DialogueNode("Wow, you're so sweet");
 
-        // last level DialogueNode customer speech
+        // last level customer speech
         DialogueNode posReplyC1 = new DialogueNode("I would like " + orderedTaco );
         
         // second level user choices
@@ -166,7 +198,7 @@ public class DialogueTreeManager{
         posReplyA2.addChoice(new DialogueChoice("I loooove your hair today by the way. Super diva. ", negReplyB4, -5)); 
         posReplyA2.addChoice(new DialogueChoice("Anyways, what can I get for ya?", posReplyC1, +5));
 
-        // Third level DialogueChoices
+        // third level user choices
         posReplyB2.addChoice(new DialogueChoice("Anyways, what can I get for ya?", posReplyC1, +5));
         posReplyB2.addChoice(new DialogueChoice("Thanks for being so welcoming. What can I get for you?", posReplyC1, +5));
         posReplyB2.addChoice(new DialogueChoice("Hey, I am way out of your league. Stop flirting. What taco do you want?", posReplyC1, +5));
